@@ -1,0 +1,38 @@
+<p><b>Cars > List Car > </b>Add New Car</p>
+<h2>Add New Car</h2>
+
+<form action="/api/cars" method="POST" id="add_car">
+    <div class="card" id="big-card">
+        <div class="form-group">
+            <label for="nama" style="margin-right: 80px;">Nama</label>
+            <input type="text" id="nama" name="nama" required><br>
+        </div>
+        <div class="form-group">
+            <label for="hrg_sewa" style="margin-right: 25px;">Sewa Per Hari</label>
+            <input type="text" id="hrg_sewa" name="hrg_sewa" required><br>
+        </div>
+        <div class="form-group">
+            <label for="ukuran" style="margin-right: 71px;">Ukuran</label>
+            <select id="ukuran" name="ukuran">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="foto" style="margin-right: 90px;">Foto</label>
+            <input required type="text" id="foto" name="foto" required><br>
+        </div>
+
+    </div>
+    <div class="card-btn2">
+        <a href="/">
+            <div class="btn-cancel">
+                Cancel
+            </div>
+        </a>
+        <button type="submit" class="btn-save" style="border: none;">
+            Save
+        </button>
+    </div>
+</form>

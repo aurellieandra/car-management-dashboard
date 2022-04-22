@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Management Dashboard</title>
+    <link rel="icon" href="../images/sidebar/rectangle-bluebox.png">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="sidebar">
+            <%- include('partials/_sidebar') %>
+        </div>
+        <div id="page">
+            <%- include('partials/_navbar') %>
+                <div class="content">
+                    <%- include('partials/_view') %>
+                </div>
+                <div class="modal" id="modal">
+                    <img src="../images/img-BeepBeep.png">
+                    <div class="title">
+                        Menghapus Data Mobil
+                    </div>
+                    <a href="/">
+                        <div class="btn-pick">
+                            Ya
+                        </div>
+                    </a>
+                    <a>
+                        <div class="btn-pick">
+                            Tidak
+                        </div>
+                    </a>
+                    <div id="overlay"></div>
+                </div>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="../javascripts/mobil.js"></script>
+    <!-- <script type="text/javascript" src="../javascripts/modal.js"></script> -->
+</body>
+
+</html>
