@@ -325,10 +325,17 @@ body {
 }
 
 /* Modal */
-
-/* *, *::after, *::before {
+Vanilla-JavaScript-Modal/styles.css
+@WebDevSimplified
+WebDevSimplified Tutorial Finish
+Latest commit 11ebf34 on Apr 14, 2019
+ History
+ 1 contributor
+64 lines (56 sloc)  1 KB
+   
+*, *::after, *::before {
   box-sizing: border-box;
-} */
+}
 
 .modal {
   position: fixed;
@@ -349,8 +356,11 @@ body {
 }
 
 .modal-header {
-  text-align: center;
   padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
 }
 
 .modal-header .title {
@@ -368,45 +378,7 @@ body {
 }
 
 .modal-body {
-  display: flex;
   padding: 10px 15px;
-  justify-content: center;
-  gap: 10px;
-  text-decoration-style: none;
-}
-
-.btn-yes {
-  background-color: white;
-  width: 50px;
-  height: 25px;
-  border-radius: 3px;
-  cursor: pointer;
-  box-shadow: -1px 0 #0D28A6, 0 1px #0D28A6, 1px 0 #0D28A6, 0 -1px #0D28A6;
-  color: #0D28A6;
-  padding: 10px;
-  text-align: center;
-}
-
-.btn-yes:hover {
-  background-color: #0D28A6;
-  color: white;
-}
-
-.btn-pick {
-  background-color: white;
-  text-decoration-style: none;
-  width: 50px;
-  height: 25px;
-  border-radius: 3px;
-  cursor: pointer;
-  box-shadow: -1px 0 #0D28A6, 0 1px #0D28A6, 1px 0 #0D28A6, 0 -1px #0D28A6;
-  color: #0D28A6;
-  text-align: center;
-}
-
-.btn-pick:hover {
-  background-color: #0D28A6;
-  color: white;
 }
 
 #overlay {

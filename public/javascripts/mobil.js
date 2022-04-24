@@ -2,7 +2,6 @@ btnAll = document.getElementById('btn-all')
 btnSmall = document.getElementById('btn-sm')
 btnMedium = document.getElementById('btn-md')
 btnLarge = document.getElementById('btn-lg')
-btnDelete = document.getElementsByClassName('btn-delete')
 
 var allCar = null
 
@@ -23,24 +22,23 @@ getAllCar = () => {
 
             for (let i = 0; i < data.data.length; i++) {
                 const Car = document.createElement('div')
-                // <img src="../images/page-icon/car.png">
                 Car.innerHTML = `
                     <div class="card">
                         <img src="../images/page-icon/car.png">
-                        <p>${data.data[i].nama}/ ${data.data[i].tipe}</p>
+                        <p>${data.data[i].nama}</p>
                         <h3>Rp. ${data.data[i].hrg_sewa} / hari</h3>
-                        <p>${data.data[i].id}</p>
+                        <p>ID: ${data.data[i].id}</p>
                         <img src="../images/small/fi_clock.png" class="small-img">
                             Updated at ${data.data[i].updatedAt}
                         </img>
                         <div class="card-btn">
-                            <a href="/api/cars/">
+                            <a data-doc="${data.data[i].id}">
                                 <div class="btn-delete" id="btn-del">
                                     <img src="../images/small/fi_trash-2.png" class="small-img">
                                         Delete
                                 </div>
                             </a>
-                            <a href="/edit-car">
+                            <a href="/${data.data[i].id}">
                                 <div class="btn-edit">
                                     <img src="../images/small/fi_edit.png" class="small-img">
                                         Edit
@@ -70,45 +68,32 @@ filterCar = (ukuran) => {
                 const Car = document.createElement('div')
 
                 Car.innerHTML = `
-                    <div class="card">
-                        <img src="../images/page-icon/car.png">
-                        <p>${data.nama}/ ${data.tipe}</p>
-                        <h3>Rp. ${data.hrg_sewa} / hari</h3>
-                        <p>${data.id}</p>
-                        <img src="../images/small/fi_clock.png" class="small-img">
-                            Updated at ${data.updatedAt}
-                        </img>
-                        <div class="card-btn">
-                            <a href="/api/cars/">
-                                <div class="btn-delete" id="btn-del">
-                                    <img src="../images/small/fi_trash-2.png" class="small-img">
+                <div class="card">
+                    <img src="../images/page-icon/car.png">
+                    <p>${data.nama}</p>
+                    <h3>Rp. ${data.hrg_sewa} / hari</h3>
+                    <p>ID: ${data.id}</p>
+                    <img src="../images/small/fi_clock.png" class="small-img">
+                        Updated at ${data.updatedAt}
+                    </img>
+                    <div class="card-btn">
+                        <a data-doc="${data.id}">
+                            <div class="btn-delete" id="btn-del">
+                                <img src="../images/small/fi_trash-2.png" class="small-img">
                                     Delete
-                                </div>
-                            </a>
-                            <a href="/edit-car">
-                                <div class="btn-edit">
-                                    <img src="../images/small/fi_edit.png" class="small-img">
-                                        Edit
-                                </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
+                        <a href="/${data.id}">
+                            <div class="btn-edit">
+                                <img src="../images/small/fi_edit.png" class="small-img">
+                                    Edit
+                            </div>
+                        </a>
                     </div>
+                </div>
                 `
                 body.appendChild(Car)
             })
-        })
-}
-
-deleteCars = (id) => {
-    fetch('/api/cars')
-        .then((response) => response.json())
-        .then((data) => {
-            allCar = data
-
-            if (allCar.data.id == id) {
-                var valueId = allCar.data.id
-                return valueId
-            }
         })
 }
 

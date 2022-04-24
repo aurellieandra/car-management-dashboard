@@ -12,9 +12,11 @@ module.exports = class {
         })
             .then((result) => {
                 res.status(201).send(
-                    // {status: 201,
-                    // message: 'a new car created!',
-                    // data: result}
+                    {
+                        status: 201,
+                        message: 'a new car created!',
+                        data: result
+                    },
                     res.redirect("/")
                 )
             })
@@ -23,7 +25,7 @@ module.exports = class {
             })
     }
 
-    /* Get Car */
+    /* Get All Car */
     static getAllCars(req, res, next) {
         Car.findAll()
             .then((result) => {
@@ -38,16 +40,41 @@ module.exports = class {
             })
     }
 
+    /* Get Car by Id */
+    static getCar(req, res, next) {
+        const id = req.params.id
+
+        Car.findByPk(id)
+            .then((result) => {
+                // res.status(201).send({
+                //     status: 201,
+                //     data: result
+                // }),
+                res.render('editCar', { mobil: result })
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
     /* Update Car */
     static updateCars(req, res, next) {
-        Car.update(req.body, {
+        let body = {
+            nama: req.params.nama,
+            hrg_sewa: req.params.hrg_sewa,
+            ukuran: req.params.ukuran,
+            foto: req.params.foto
+        }
+        Car.update(body, {
             where: { id: req.params.id }
         })
             .then((result) => {
                 res.status(201).send({
                     status: 201,
                     message: 'car sucessfully updated!',
-                })
+                    type: 'PUT',
+                    data: req.body
+                }, res.redirect('/'))
             })
             .catch((err) => {
                 console.log(err)
