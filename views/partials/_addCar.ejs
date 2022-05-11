@@ -1,11 +1,15 @@
 <p><b>Cars > List Car > </b>Add New Car</p>
 <h2>Add New Car</h2>
 
-<form action="/api/cars" method="POST" id="add_car">
+<form action="/cars" method="POST" id="add_car">
     <div class="card" id="big-card">
         <div class="form-group">
             <label for="nama" style="margin-right: 80px;">Nama</label>
             <input type="text" id="nama" name="nama" required><br>
+        </div>
+        <div class="form-group">
+            <label for="tipe" style="margin-right: 90px;">Tipe</label>
+            <input type="text" id="tipe" name="tipe" required><br>
         </div>
         <div class="form-group">
             <label for="hrg_sewa" style="margin-right: 25px;">Sewa Per Hari</label>

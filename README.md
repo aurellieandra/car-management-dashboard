@@ -1,6 +1,6 @@
-#   car-management-dashboard
+Car Management Dashboard
 
-#   entity relationship diagram
+#   Entity Relationship Diagram
 
     Table Car {
     id int [pk, increment]

@@ -4,12 +4,12 @@ const CarController = require('../controller/car');
 
 router.get('/api/cars', CarController.getAllCars);
 
-router.get('/:id', CarController.getCar)
-
-router.post('/api/:id', CarController.updateCars);
-
 router.post('/cars', CarController.addCar);
 
-router.delete('/cars/:id', CarController.deleteCars);
+router.get('/edit-car/:id', CarController.getCar)
+
+router.post('/edit-car/:id', CarController.updateCars);
+
+router.get('/delete/:id', CarController.deleteCars);
 
 module.exports = router;

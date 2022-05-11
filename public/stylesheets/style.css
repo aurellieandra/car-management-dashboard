@@ -16,6 +16,7 @@ body {
 
 /* CSS for div id sidebar */
 #sidebar {
+  position: fixed;
   display: flex;
   width: max-content;
   min-height: 100% !important;
@@ -61,7 +62,7 @@ body {
 }
 
 #wb-logo {
-  width: 100%;
+  width: 90%;
   height: 40px;
   background-color: white;
   padding-left: 20px;
@@ -94,13 +95,16 @@ body {
 
 /* CSS for div id navbar */
 #navbar {
+  position: fixed;
+  margin-left: 310px;
   background-color: white;
+  width: 82%;
   height: 70px;
   padding: 15px;
   padding-left: 30px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   box-shadow: 9px 0px 10px lightgrey;
 }
 
@@ -109,11 +113,12 @@ body {
   height: 30px;
 }
 
+
 .menu-right {
-  justify-content: space-between;
   display: flex;
   gap: 20px;
   align-items: center;
+  padding-right: 25px;
 }
 
 .btn-search {
@@ -152,6 +157,8 @@ body {
 
 .content {
   padding: 30px;
+  margin-left: 325px;
+  margin-top: 100px;
   padding-top: 10px;
 }
 
@@ -167,15 +174,19 @@ body {
 .cards {
   padding-top: 30px;
   display: flex;
-  justify-content: space-evenly;
   gap: 50px;
   flex-wrap: wrap;
 }
 
 .card {
+  width: 300px;
   background-color: white;
   padding: 20px;
   box-shadow: 0 0 10px lightgrey;
+}
+
+#big-card {
+  width: auto;
 }
 
 .card-btn {
@@ -325,75 +336,39 @@ body {
 }
 
 /* Modal */
-Vanilla-JavaScript-Modal/styles.css
-@WebDevSimplified
-WebDevSimplified Tutorial Finish
-Latest commit 11ebf34 on Apr 14, 2019
- History
- 1 contributor
-64 lines (56 sloc)  1 KB
-   
-*, *::after, *::before {
-  box-sizing: border-box;
-}
-
 .modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  transition: 200ms ease-in-out;
-  border: 1px solid black;
-  border-radius: 10px;
-  z-index: 10;
-  background-color: white;
-  width: 500px;
-  max-width: 80%;
-}
-
-.modal.active {
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.modal-header {
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid black;
-}
-
-.modal-header .title {
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.modal-header .close-button {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.modal-body {
-  padding: 10px 15px;
-}
-
-#overlay {
-  position: fixed;
-  opacity: 0;
-  transition: 200ms ease-in-out;
-  top: 0;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, .5);
-  pointer-events: none;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-#overlay.active {
-  opacity: 1;
-  pointer-events: all;
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

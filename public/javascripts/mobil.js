@@ -6,42 +6,45 @@ btnLarge = document.getElementById('btn-lg')
 var allCar = null
 
 getAllCar = () => {
+    btnAll.style.backgroundColor = "#AEB7E1"
+    btnAll.style.boxShadow = "-1px 0 #0D28A6, 0 1px #0D28A6, 1px 0 #0D28A6, 0 -1px #0D28A6"
+    btnAll.style.color = "#0D28A6"
+
     fetch('/api/cars')
         .then((response) => response.json())
         .then((data) => {
-            btnSmall.style = ""
-            btnLarge.style = ""
-            btnMedium.style = ""
-
-            btnAll.style.backgroundColor = "#AEB7E1"
-            btnAll.style.boxShadow = "-1px 0 #0D28A6, 0 1px #0D28A6, 1px 0 #0D28A6, 0 -1px #0D28A6"
-            btnAll.style.color = "#0D28A6"
-
             const body = document.getElementById('kartu')
             body.innerHTML = ''
 
             for (let i = 0; i < data.data.length; i++) {
                 const Car = document.createElement('div')
+
+                const d = new Date(data.data[i].updatedAt);
+
                 Car.innerHTML = `
                     <div class="card">
-                        <img src="../images/page-icon/car.png">
-                        <p>${data.data[i].nama}</p>
+                        <img src="../images/page-icon/car.png"></img>
+
+                        <p>${data.data[i].nama} | ${data.data[i].tipe}</p>
                         <h3>Rp. ${data.data[i].hrg_sewa} / hari</h3>
-                        <p>ID: ${data.data[i].id}</p>
+
                         <img src="../images/small/fi_clock.png" class="small-img">
-                            Updated at ${data.data[i].updatedAt}
+                            Updated at ${d}
                         </img>
+
                         <div class="card-btn">
-                            <a data-doc="${data.data[i].id}">
-                                <div class="btn-delete" id="btn-del">
+                            <a href="/delete/${data.data[i].id}">
+                                <div class="btn-delete">
                                     <img src="../images/small/fi_trash-2.png" class="small-img">
                                         Delete
+                                    </img>  
                                 </div>
                             </a>
-                            <a href="/${data.data[i].id}">
+                            <a href="/edit-car/${data.data[i].id}">
                                 <div class="btn-edit">
                                     <img src="../images/small/fi_edit.png" class="small-img">
                                         Edit
+                                    </img>
                                 </div>
                             </a>
                         </div>
@@ -49,6 +52,7 @@ getAllCar = () => {
                 `
                 body.appendChild(Car)
             }
+            allCar = data
         })
 }
 
@@ -67,23 +71,24 @@ filterCar = (ukuran) => {
             newCar.forEach((data) => {
                 const Car = document.createElement('div')
 
+                const d = new Date(data.updatedAt);
+
                 Car.innerHTML = `
                 <div class="card">
                     <img src="../images/page-icon/car.png">
-                    <p>${data.nama}</p>
+                    <p>${data.nama} | ${data.tipe}</p>
                     <h3>Rp. ${data.hrg_sewa} / hari</h3>
-                    <p>ID: ${data.id}</p>
                     <img src="../images/small/fi_clock.png" class="small-img">
-                        Updated at ${data.updatedAt}
+                        Updated at ${d}
                     </img>
                     <div class="card-btn">
-                        <a data-doc="${data.id}">
+                        <a href="/delete/${data.id}">
                             <div class="btn-delete" id="btn-del">
                                 <img src="../images/small/fi_trash-2.png" class="small-img">
                                     Delete
                             </div>
                         </a>
-                        <a href="/${data.id}">
+                        <a href="/edit-car/${data.id}">
                             <div class="btn-edit">
                                 <img src="../images/small/fi_edit.png" class="small-img">
                                     Edit
@@ -98,6 +103,13 @@ filterCar = (ukuran) => {
 }
 
 btnAll.addEventListener('click', (e) => {
+    btnSmall.style = ""
+    btnLarge.style = ""
+    btnMedium.style = ""
+
+    btnAll.style.backgroundColor = "#AEB7E1"
+    btnAll.style.boxShadow = "-1px 0 #0D28A6, 0 1px #0D28A6, 1px 0 #0D28A6, 0 -1px #0D28A6"
+    btnAll.style.color = "#0D28A6"
     getAllCar()
 })
 

@@ -1,11 +1,15 @@
 <p><b>Cars > List Car > </b>Update Car Information</p>
 <h2>Update Car Information</h2>
 
-<form action="/api/<%= mobil.id %>" method="POST" id="edit_car">
+<form action="/edit-car/<%= mobil.id %>" method="POST" id="edit_car">
     <div class="card" id="big-card">
         <div class="form-group">
             <label for="nama" style="margin-right: 80px;">Nama</label>
             <input type="text" id="nama" name="nama" value="<%= mobil.nama %>" required><br>
+        </div>
+        <div class="form-group">
+            <label for="tipe" style="margin-right: 90px;">Tipe</label>
+            <input type="text" id="tipe" name="tipe" value="<%= mobil.tipe %>" required><br>
         </div>
         <div class="form-group">
             <label for="hrg_sewa" style="margin-right: 25px;">Sewa Per Hari</label>
@@ -14,12 +18,12 @@
         <div class="form-group">
             <label for="ukuran" style="margin-right: 71px;">Ukuran</label>
             <select id="ukuran" name="ukuran">
-                <option style="visibility: hidden;" value=" <% mobil.ukuran %>">
-                    <%= mobil.ukuran %>
+                <option value="<% mobil.ukuran %>" required>
+                    <% mobil.ukuran %>
                 </option>
-                <option value="small">small</option>
-                <option value="medium">medium</option>
-                <option value="large">large</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
             </select>
         </div>
         <div class="form-group">
