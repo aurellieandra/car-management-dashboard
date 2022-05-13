@@ -4,7 +4,7 @@ module.exports = class {
     static addHistory(req, res, next) {
         History.create({
             CarId: req.body.CarId,
-            UserId: req.body.UserId
+            UserId: req.userlogin.id
         })
             .then((result) => {
                 res.status(201).send({

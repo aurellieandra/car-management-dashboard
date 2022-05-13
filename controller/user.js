@@ -1,4 +1,6 @@
 const { User } = require('../models');
+const bcrypt = require('bcrypt')
+const jwt = require('../helper/jwt')
 
 module.exports = class {
     static addUser(req, res, next) {
@@ -19,6 +21,24 @@ module.exports = class {
             })
     }
 
+    // Contoh enkripsi yang tidak best-practice
+    /*
+    static async addUser(req, res, next) {
+        const newPassword = await bcrypt.hashSync(req.body.password, 10)
+        User.create({ ...req.body, password: newPassword })
+            .then((result) => {
+                res.status(201).send({
+                    status: 201,
+                    message: 'a new user created!',
+                    data: result
+                })
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+    */
+
     static getAllUsers(req, res, next) {
         User.findAll()
             .then((result) => {
@@ -30,5 +50,41 @@ module.exports = class {
             .catch((err) => {
                 console.log(err);
             })
+    }
+
+    static async login(req, res, next) {
+        try {
+            const user = await User.findOne({ where: { email: req.body.email } })
+            if (!user) {
+                res.status(404).send({
+                    status: 404,
+                    message: 'User not found!'
+                })
+            }
+
+            const isValidPassword = await bcrypt.compare(req.body.password, user.password)
+
+            if (!isValidPassword) {
+                res.status(404).send({
+                    status: 400,
+                    message: 'Email and password not match!'
+                })
+            }
+
+            const token = jwt.generateToken({ email: user.email, password: user.password })
+            const secureUser = user.dataValues
+            delete secureUser.password
+
+            res.status(200).send({
+                status: 200,
+                message: 'User found!',
+                data: {
+                    user: secureUser,
+                    token: token
+                }
+            })
+        } catch (error) {
+            res.status(500).send(error)
+        }
     }
 } 
