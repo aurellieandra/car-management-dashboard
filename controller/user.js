@@ -1,6 +1,7 @@
 const { User } = require('../models');
 const bcrypt = require('bcrypt')
 const jwt = require('../helper/jwt')
+const UserService = require('../service/users')
 
 module.exports = class {
     static addUser(req, res, next) {
@@ -71,18 +72,36 @@ module.exports = class {
                 })
             }
 
-            const token = jwt.generateToken({ email: user.email, password: user.password })
+            /*
+                // Token 
+                const token = jwt.generateToken({ email: user.email, password: user.password })
+                const secureUser = user.dataValues
+                delete secureUser.password
+            */
+
+            // Session
             const secureUser = user.dataValues
-            delete secureUser.password
+            req.session.isAuthenticated = true;
+            req.session.user = user;
 
             res.status(200).send({
                 status: 200,
                 message: 'User found!',
                 data: {
                     user: secureUser,
-                    token: token
+                    // token: token
                 }
             })
+        } catch (error) {
+            res.status(500).send(error)
+        }
+    }
+
+    // Example of Query Usage
+    static async findAllUsersSample(req, res, next) {
+        try {
+            const response = await UserService.findAll()
+            res.status(200).send(response)
         } catch (error) {
             res.status(500).send(error)
         }
