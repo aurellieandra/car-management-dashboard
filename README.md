@@ -30,4 +30,5 @@ Car Management Dashboard
     updatedAt timestamp
     }
 
-Alerts after successfully adding and updating data hasn't been added yet, alongside with the modal that is needed for delete's validation.
+Alerts after successfully adding and updating data hasn't been added yet, 
+alongside with the modal that is needed for confirmation before deleting a car data. 
