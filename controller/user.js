@@ -22,24 +22,6 @@ module.exports = class {
             })
     }
 
-    // Contoh enkripsi yang tidak best-practice
-    /*
-    static async addUser(req, res, next) {
-        const newPassword = await bcrypt.hashSync(req.body.password, 10)
-        User.create({ ...req.body, password: newPassword })
-            .then((result) => {
-                res.status(201).send({
-                    status: 201,
-                    message: 'a new user created!',
-                    data: result
-                })
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
-    */
-
     static getAllUsers(req, res, next) {
         User.findAll()
             .then((result) => {
