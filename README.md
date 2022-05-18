@@ -29,3 +29,5 @@ Car Management Dashboard
     createdAt timestamp
     updatedAt timestamp
     }
+
+Alerts after successfully adding and updating data hasn't been added yet, alongside with the modal that is needed for delete's validation.

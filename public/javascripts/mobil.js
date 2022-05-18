@@ -56,6 +56,7 @@ getAllCar = () => {
         })
 }
 
+//<a href="/delete/${data.data[i].id}">
 getAllCar()
 
 filterCar = (ukuran) => {
